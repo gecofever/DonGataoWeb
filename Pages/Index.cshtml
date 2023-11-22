@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Home - Don Gatão";
+    ViewData["Logo"] = "Tudo para sua Barbearia";
+    Layout = "_Layout";
+}
+
+<div class="text-center">
+    <img width="220" height="220" src="/images/don_gatao.jpeg" />
+    <h1 class="display-4">Sejam Bem-Vindos</h1>
+    <p>@ViewData["Logo"]</p>
+</div>
+
+<div class="row justify-content-md-center">
+    @foreach (var item in Model.ListaProduto)
+    {
+        <div class="card col-3 m-3">
+            <img src="@item.ImagemUri" class="p-3" style="border radius: 25px">
+            <div calss="card-body">
+                <h5 class="card-title">@item.Nome</h5>
+                <p class="card-text">@item.Descricao</p>
+                <a class="btn btn-primary" asp-page="/Detalhes" 
+                asp-route-slug="@item.NomeSlug"
+                asp-route-id = "@item.ProdutoId">Ver Mais</a>
+            </div>
+
+        </div>
+    }
+
+</div>
